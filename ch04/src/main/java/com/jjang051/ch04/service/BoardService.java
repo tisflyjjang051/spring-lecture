@@ -27,4 +27,13 @@ public class BoardService {
   public void insertBoard(BoardDto boardDto) {
     boardDao.insertBoard(boardDto);
   }
+
+  public BoardDto getView(int no) {
+    BoardDto boardDto = boardDao.getView(no);
+    return boardDto;
+  }
+
+  public void modifyBoard(BoardDto boardDto) {
+    boardDao.modifyBoard(boardDto);
+  }
 }

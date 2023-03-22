@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/board")
@@ -38,5 +39,18 @@ public class BoardController {
     //log.info("boardDto=={}", boardDto);
     boardService.insertBoard(boardDto);
     return "redirect:/";
+  }
+
+  @GetMapping("/view")
+  public String view(int no, Model model) {
+    log.info("no=={}", no);
+    model.addAttribute("boardDto", boardService.getView(no));
+    return "/board/view";
+  }
+
+  @PostMapping("/modifyProcess")
+  public String modifyProcess(BoardDto boardDto) {
+    boardService.modifyBoard(boardDto);
+    return "redirect:/board/list";
   }
 }

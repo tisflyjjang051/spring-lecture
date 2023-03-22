@@ -11,7 +11,13 @@
   <ul>
     <li th:each="boardDto : ${boardList}">
       <span th:text="${boardDto.no}" class="no">no</span>
-      <span th:text="${boardDto.subject}" class="subject">subject</span>
+      <span class="subject">
+        <a th:text="${boardDto.subject}" 
+          href="/board/view?no=3" 
+          th:href="@{/board/view(no=${boardDto.no})}">
+            subject
+        </a>
+      </span>
       <span th:text="${boardDto.userName}" class="userName">userName</span>
       <span th:text="${boardDto.regDate}" class="regDate">regDate</span>
       <span th:text="${boardDto.hit}" class="hit">hit</span>

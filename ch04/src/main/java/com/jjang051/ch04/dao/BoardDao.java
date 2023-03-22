@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BoardDao {
   ArrayList<BoardDto> getAllBoard();
   int insertBoard(BoardDto boardDto);
+  BoardDto getView(int no);
+  void modifyBoard(BoardDto boardDto);
 }

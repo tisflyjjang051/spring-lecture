@@ -14,6 +14,18 @@ spring:
     url:  jdbc:oracle:thin:@localhost:1521:xe
     username: TIS001
     password: 1234
+    
+    hikari: 
+      driver-class-name: oracle.jdbc.driver.OracleDriver 
+      username: TIS001 
+      password: 1234 
+      jdbc-url: jdbc:oracle:thin:@localhost:1521:xe
+      minimum-idle: 5 
+      maximum-pool-size: 10
+      idle-timeout: 30000 
+      pool-name: DevLogHikariCP 
+      max-lifetime: 200000 
+      connection-timeout: 30000 
 
 #로그 찍기    
 logging:
@@ -22,5 +34,7 @@ logging:
 
 #mybatis 설정
 mybatis:
-  mapper-locations: classpath:sqlmapper/**/*.xml
+  mapper-locations: classpath:sqlmapper/mapper/**/*.xml
+  config-location: classpath:sqlmapper/config/config.xml
+
 
