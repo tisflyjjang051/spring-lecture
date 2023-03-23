@@ -29,4 +29,8 @@ public class ReplyBoardService {
   public int getMaxReGroup() {
     return replyBoardDao.getMaxReGroup();
   }
+
+  public ReplyBoardDto getSelectedBoard(int no) {
+    return replyBoardDao.getSelectedBoard(no);
+  }
 }

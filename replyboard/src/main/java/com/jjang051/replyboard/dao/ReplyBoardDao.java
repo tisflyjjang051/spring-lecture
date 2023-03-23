@@ -9,4 +9,5 @@ public interface ReplyBoardDao {
   List<ReplyBoardDto> getAllReplyBoard();
   int insertReplyBoard(ReplyBoardDto replyBoardDto);
   int getMaxReGroup();
+  ReplyBoardDto getSelectedBoard(int no);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,6 +41,13 @@
     <div class="container" id="contents">
       <h2 class="mt-5 mb-3 m">게시판</h2>
       <table class="table table-striped mt-5">
+        <colgroup>
+          <col style="width:50px; text-align: center;">
+          <col style="text-align: left;">
+          <col style="width:120px; text-align: center;">
+          <col style="width:200px; text-align: center;">
+          <col style="width:50px; text-align: center;">
+        </colgroup>
         <thead>
           <tr>
             <th scope="col">no</th>
@@ -51,92 +58,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
+          <tr th:each="item : ${boardList}">
+            <td scope="row" th:text="${item.no}">1</td>
+            <td><a th:href="@{/board/view(no=${item.no})}" th:text="${item.subject}" href="view.html">제목이 들어갑니다.</a></td>
+            <td th:text="${item.name}">글쓴 사람 이름</td>
+            <td th:text="${item.regDate}">2023.03.23</td>
+            <td th:text="${item.hit}">1</td>
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>제목이 들어갑니다.</td>
-            <td>글쓴 사람 이름</td>
-            <td>2023.03.23</td>
-            <td>1</td>
-          </tr>
-          
-          
         </tbody>
       </table>
     </div>
