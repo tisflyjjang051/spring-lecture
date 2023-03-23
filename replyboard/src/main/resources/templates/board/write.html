@@ -20,16 +20,10 @@
   <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">게시판</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -43,18 +37,42 @@
       </div>
     </div>
   </header>
-  
-  
+  <main class="main" id="main">
+    <div class="container" id="contents">
+      <h2 class="mt-5 mb-3 m">게시판</h2>
+      <form action="/board/writeProcess" method="POST" class="mt-5">
+        <div class="mb-3">
+          <label for="" class="form-label">제목</label>
+          <input type="text" class="form-control" id="" placeholder="제목" name="subject">
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">글쓴이</label>
+          <input type="text" class="form-control" id="" placeholder="글쓴이" name="name">
+        </div>
+        
+        <div class="mb-3">
+          <label for="" class="form-label">비밀번호</label>
+          <input type="password" class="form-control" id="" placeholder="비밀번호" name="name">
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">내용</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="contents"></textarea>
+        </div>
+        <div class="mt-5 text-center">
+          <button type="submit" class="btn btn-primary btn-lg">확인</button>
+          <button type="reset" class="btn btn-secondary btn-lg">취소</button>
+        </div>
+      </form>
+      
+    </div>
+  </main>
   <div class="container">
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">게시판</a></li>
       </ul>
-      <p class="text-center text-muted">© 2022 Company, Inc</p>
+      <p class="text-center text-muted">© 2023 JJANG'S MEDIA LAB</p>
     </footer>
   </div>
   

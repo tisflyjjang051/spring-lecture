@@ -7,7 +7,19 @@ spring:
     ansi:
       enabled: always
 
+  datasource: 
+    driver-class-name:  oracle.jdbc.driver.OracleDriver
+    url:  jdbc:oracle:thin:@localhost:1521:xe
+    username: TIS001
+    password: 1234
+
+
 logging:
   level:  
     '[com.jjang051.replyboard]': DEBUG
+
+mybatis:
+  mapper-locations: classpath:mapper/sqlmapper/**/*.xml
+  config-location: classpath:mapper/config/config.xml
+   
 
