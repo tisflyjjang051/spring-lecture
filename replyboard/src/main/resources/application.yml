@@ -1,0 +1,13 @@
+#server port 설정
+server:
+  port: 9090
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:  
+    '[com.jjang051.replyboard]': DEBUG
+
