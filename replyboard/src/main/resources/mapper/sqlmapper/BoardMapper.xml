@@ -4,8 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jjang051.replyboard.dao.ReplyBoardDao">
   <select id="getAllReplyBoard" resultType="ReplyBoardDto">
-    SELECT * FROM REPLAYBOARD
+    SELECT * FROM REPLYBOARD
   </select>
+
+  <select id="getMaxReGroup" resultType="Integer">
+    SELECT NVL(MAX(REGROUP),1) AS MAXREGROUP FROM REPLYBOARD
+  </select>
+
+
   <insert id="insertReplyBoard" parameterType="ReplyBoardDto">
     INSERT INTO REPLYBOARD VALUES (
                                     REPLYBOARD_SEQ.NEXTVAL,
@@ -14,10 +20,10 @@
                                     #{password},
                                     SYSDATE,
                                     #{contents},
-                                    1,    <!--  available -->
-                                    1,    <!--  regroup -->
-                                    1,    <!--  relevel -->
-                                    1,    <!--  restep -->
+                                    1,                                            <!--  available -->
+                                    1,                                            <!--  regroup -->
+                                    1,                                            <!--  relevel -->
+                                    1,                                            <!--  restep -->
                                     0
                                   )
   </insert>
