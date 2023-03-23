@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ReplyBoardDao {
   List<ReplyBoardDto> getAllReplyBoard();
-  int insertReplyBoard(ReplyBoardDto replyBoardDto);
+  int insertBoard(ReplyBoardDto replyBoardDto);
   int getMaxReGroup();
   ReplyBoardDto getSelectedBoard(int no);
+  int insertReplyBoard(ReplyBoardDto replyBoardDto);
 }

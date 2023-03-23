@@ -31,12 +31,13 @@ public class BoardController {
     replyBoardDto.setReLevel(1);
     replyBoardDto.setReStep(1);
     log.info(replyBoardDto);
-    replyBoardService.insertReplyBoard(replyBoardDto);
+    replyBoardService.insertBoard(replyBoardDto);
     return "redirect:/board/list";
   }
 
-  @PostMapping("/replyWriteProcess")
+  @PostMapping("/replyProcess")
   public String replyWriteProcess(ReplyBoardDto replyBoardDto) {
+    replyBoardService.insertReplyBoard(replyBoardDto);
     return "redirect:/board/list";
   }
 
@@ -45,6 +46,11 @@ public class BoardController {
     List<ReplyBoardDto> boardList = replyBoardService.getAllReplyBoard();
     model.addAttribute("boardList", boardList);
     return "/board/list";
+  }
+
+  @GetMapping("/reply")
+  public String reply(int no) {
+    return "/board/reply";
   }
 
   @GetMapping("/view")

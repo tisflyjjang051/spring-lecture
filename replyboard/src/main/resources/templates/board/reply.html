@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,37 +40,33 @@
   <main class="main" id="main">
     <div class="container" id="contents">
       <h2 class="mt-5 mb-3 m">게시판</h2>
-      <table class="table table-striped mt-5">
-        <colgroup>
-          <col style="width:50px; text-align: center;">
-          <col style="text-align: left;">
-          <col style="width:120px; text-align: center;">
-          <col style="width:200px; text-align: center;">
-          <col style="width:50px; text-align: center;">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">no</th>
-            <th scope="col">subject</th>
-            <th scope="col">writer</th>
-            <th scope="col">date</th>
-            <th scope="col">hit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="item : ${boardList}">
-            <td scope="row" th:text="${item.no}">1</td>
-            <td class="space1" th:class="'space'+${item.reStep}">
-              <a th:href="@{/board/view(no=${item.no})}" th:text="${item.subject}" href="view.html">
-                제목이 들어갑니다.
-              </a>
-            </td>
-            <td th:text="${item.name}">글쓴 사람 이름</td>
-            <td th:text="${item.regDate}">2023.03.23</td>
-            <td th:text="${item.hit}">1</td>
-          </tr>
-        </tbody>
-      </table>
+      <form action="/board/replyProcess" method="POST" class="mt-5">
+        <input type="hidden" name="reGroup" value="100" th:value="${param.reGroup}">
+        <input type="hidden" name="reLevel" value="390" th:value="${param.reLevel}">
+        <input type="hidden" name="reStep"  value="38924" th:value="${param.reStep}">
+        <div class="mb-3">
+          <label for="" class="form-label">제목</label>
+          <input type="text" class="form-control" id="" placeholder="제목" name="subject">
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">글쓴이</label>
+          <input type="text" class="form-control" id="" placeholder="글쓴이" name="name">
+        </div>
+        
+        <div class="mb-3">
+          <label for="" class="form-label">비밀번호</label>
+          <input type="password" class="form-control" id="" placeholder="비밀번호" name="password">
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">내용</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="contents"></textarea>
+        </div>
+        <div class="mt-5 text-center">
+          <button type="submit" class="btn btn-primary btn-lg">확인</button>
+          <button type="reset" class="btn btn-secondary btn-lg">취소</button>
+        </div>
+      </form>
+      
     </div>
   </main>
   <div class="container">

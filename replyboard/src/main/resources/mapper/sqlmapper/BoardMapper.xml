@@ -18,7 +18,6 @@
     SELECT NVL(MAX(REGROUP),0) AS MAXREGROUP FROM REPLYBOARD
   </select>
 
-
   <insert id="insertReplyBoard" parameterType="ReplyBoardDto">
     INSERT INTO REPLYBOARD VALUES (
                                     REPLYBOARD_SEQ.NEXTVAL,
@@ -27,10 +26,25 @@
                                     #{password},
                                     SYSDATE,
                                     #{contents},
-                                    1,                                                                                    <!--  available -->
-                                    #{reGroup},                                                                                    <!--  regroup -->
-                                    #{reLevel},                                                                                    <!--  relevel -->
-                                    #{reStep},                                                                                    <!--  restep -->
+                                    1,
+                                    #{reGroup},
+                                    #{reLevel} + 1,                  
+                                    #{reStep} + 1,                      
+                                    0
+                                  )
+  </insert>
+  <insert id="insertBoard" parameterType="ReplyBoardDto">
+    INSERT INTO REPLYBOARD VALUES (
+                                    REPLYBOARD_SEQ.NEXTVAL,
+                                    #{subject},
+                                    #{name},
+                                    #{password},
+                                    SYSDATE,
+                                    #{contents},
+                                    1,
+                                    #{reGroup},                                                            
+                                    #{reLevel},                                                                                    
+                                    #{reStep},                                                                                    
                                     0
                                   )
   </insert>

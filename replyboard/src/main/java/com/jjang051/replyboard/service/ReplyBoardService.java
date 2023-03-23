@@ -22,6 +22,10 @@ public class ReplyBoardService {
     return replyBoardDao.getAllReplyBoard();
   }
 
+  public int insertBoard(ReplyBoardDto replyBoardDto) {
+    return replyBoardDao.insertBoard(replyBoardDto);
+  }
+
   public int insertReplyBoard(ReplyBoardDto replyBoardDto) {
     return replyBoardDao.insertReplyBoard(replyBoardDto);
   }
