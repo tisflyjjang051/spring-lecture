@@ -17,7 +17,7 @@
   <select id="getMaxReGroup" resultType="Integer">
     SELECT NVL(MAX(REGROUP),0) AS MAXREGROUP FROM REPLYBOARD
   </select>
-
+  <!-- 답글 쓸 때 -->
   <insert id="insertReplyBoard" parameterType="ReplyBoardDto">
     INSERT INTO REPLYBOARD VALUES (
                                     REPLYBOARD_SEQ.NEXTVAL,
@@ -33,6 +33,7 @@
                                     0
                                   )
   </insert>
+  <!-- 새글 쓸때 -->
   <insert id="insertBoard" parameterType="ReplyBoardDto">
     INSERT INTO REPLYBOARD VALUES (
                                     REPLYBOARD_SEQ.NEXTVAL,
@@ -43,9 +44,15 @@
                                     #{contents},
                                     1,
                                     #{reGroup},                                                            
-                                    #{reLevel},                                                                                    
+                                    #{reLevel},                                                            
                                     #{reStep},                                                                                    
                                     0
                                   )
   </insert>
+  <update id="updateRelevel" parameterType="ReplyBoardDto">
+    UPDATE REPLYBOARD SET RELEVEL = RELEVEL + 1 
+        WHERE REGROUP = #{REGROUP} AND RELEVEL        <! [CDATA[ > ]]> #{RELEVEL}
+  </update>
+
+
 </mapper>

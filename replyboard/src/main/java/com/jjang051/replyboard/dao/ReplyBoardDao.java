@@ -11,4 +11,5 @@ public interface ReplyBoardDao {
   int getMaxReGroup();
   ReplyBoardDto getSelectedBoard(int no);
   int insertReplyBoard(ReplyBoardDto replyBoardDto);
+  int updateRelevel(ReplyBoardDto replyBoardDto);
 }

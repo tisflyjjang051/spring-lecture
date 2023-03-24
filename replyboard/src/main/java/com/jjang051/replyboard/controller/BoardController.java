@@ -26,11 +26,6 @@ public class BoardController {
 
   @PostMapping("/writeProcess")
   public String writeProcess(ReplyBoardDto replyBoardDto) {
-    int maxRegroup = replyBoardService.getMaxReGroup();
-    replyBoardDto.setReGroup(maxRegroup + 1);
-    replyBoardDto.setReLevel(1);
-    replyBoardDto.setReStep(1);
-    log.info(replyBoardDto);
     replyBoardService.insertBoard(replyBoardDto);
     return "redirect:/board/list";
   }
