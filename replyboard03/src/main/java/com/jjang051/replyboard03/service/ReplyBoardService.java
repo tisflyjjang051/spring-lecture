@@ -7,4 +7,8 @@ public interface ReplyBoardService {
   public int insertBoard(ReplyBoardDto replyBoardDto);
 
   public List<ReplyBoardDto> getAllBoardList();
+
+  public ReplyBoardDto getSelectOne(int no);
+
+  public int updateHit(int no);
 }

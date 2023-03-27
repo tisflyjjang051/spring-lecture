@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ReplyBoardDao {
   int insertBoard(ReplyBoardDto replyBoardDto);
   List<ReplyBoardDto> getAllBoardList();
+  ReplyBoardDto getSelectOne(int no);
+  int updateHit(int no);
 }

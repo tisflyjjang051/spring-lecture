@@ -31,6 +31,14 @@ public class BoardController {
     return "/board/list";
   }
 
+  @GetMapping("/view")
+  public String view(Model model, int no) {
+    replyBoardService.updateHit(no);
+    ReplyBoardDto replyBoardDto = replyBoardService.getSelectOne(no);
+    model.addAttribute("replyBoardDto", replyBoardDto);
+    return "/board/view";
+  }
+
   @PostMapping("/writeProcess")
   public String writeProcess(
     ReplyBoardDto replyBoardDto,

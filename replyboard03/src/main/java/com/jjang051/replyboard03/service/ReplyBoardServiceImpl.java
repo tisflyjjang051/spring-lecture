@@ -27,4 +27,16 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
     List<ReplyBoardDto> boardList = replyBoardDao.getAllBoardList();
     return boardList;
   }
+
+  @Override
+  public ReplyBoardDto getSelectOne(int no) {
+    ReplyBoardDto replyBoardDto = replyBoardDao.getSelectOne(no);
+    return replyBoardDto;
+  }
+
+  @Override
+  public int updateHit(int no) {
+    int result = replyBoardDao.updateHit(no);
+    return result;
+  }
 }

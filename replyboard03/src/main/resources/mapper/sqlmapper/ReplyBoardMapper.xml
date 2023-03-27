@@ -22,4 +22,12 @@
   <select id="getAllBoardList" resultType="ReplyBoardDto">
     SELECT * FROM REPLYBOARD03
   </select>
+
+  <select id="getSelectOne" resultType="ReplyBoardDto" parameterType="Integer">
+    SELECT * FROM REPLYBOARD03 WHERE NO = #{no}
+  </select>
+
+  <update id="updateHit" parameterType="Integer">
+    UPDATE REPLYBOARD03 SET HIT = HIT + 1 WHERE NO = #{no}
+  </update>
 </mapper>
