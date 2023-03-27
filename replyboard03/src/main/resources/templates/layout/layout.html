@@ -52,5 +52,32 @@
       <p class="text-center text-muted">© 2021 Company, Inc</p>
     </footer>
   </div>
+  <div class="modal fade" tabindex="-1" id="memoModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p th:text="${msg}">Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+      const msg = /*[[${msg}]]*/;
+      const memoModal = new bootstrap.Modal("#memoModal");
+      if(msg){
+        memoModal.show();
+      }
+    /*]]>*/
+  </script>
 </body>
 </html>

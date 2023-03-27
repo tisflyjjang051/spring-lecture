@@ -22,13 +22,19 @@ public class BoardController {
     return "/board/write";
   }
 
+  @GetMapping("/list")
+  public String list() {
+    return "/board/list";
+  }
+
   @PostMapping("/writeProcess")
   public String writeProcess(
     ReplyBoardDto replyBoardDto,
     RedirectAttributes redirectAttributes
   ) {
     replyBoardService.insertBoard(replyBoardDto);
-    redirectAttributes.addAttribute("msg", "글이 등록되었습니다.");
+    //redirectAttributes.addAttribute("msg", "글이 등록되었습니다.");
+    redirectAttributes.addFlashAttribute("msg", "글이 등록되었습니다.");
     return "redirect:/board/list";
   }
 }
