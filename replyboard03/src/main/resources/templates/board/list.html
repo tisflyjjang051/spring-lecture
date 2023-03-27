@@ -8,7 +8,27 @@
 <body>
   <div class="container" id="contents" layout:fragment="contents">
     <h2>LIST</h2>
-    <p th:text="${msg}">메세지 출력하는 곳</p>
+    <!-- <p th:text="${msg}">메세지 출력하는 곳</p> -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">NO</th>
+          <th scope="col" class="text-center">SUBJECT</th>
+          <th scope="col" class="text-center">WRITER</th>
+          <th scope="col" class="text-center">DATE</th>
+          <th scope="col" class="text-center">HIT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${boardList}">
+          <th th:text="${item.no}" class="text-center">1</th>
+          <td th:text="${item.subject}" class="text-center">아버지를 아버지라 부르지 못하고...</td>
+          <td th:text="${item.writer}" class="text-center">홍길동</td>
+          <td th:text="${item.regDate}" class="text-center">2023.03.25</td>
+          <td th:text="${item.hit}" class="text-center">1</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
   

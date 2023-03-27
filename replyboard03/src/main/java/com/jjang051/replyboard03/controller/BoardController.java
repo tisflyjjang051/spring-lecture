@@ -2,8 +2,10 @@ package com.jjang051.replyboard03.controller;
 
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
 import com.jjang051.replyboard03.service.ReplyBoardService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,9 @@ public class BoardController {
   }
 
   @GetMapping("/list")
-  public String list() {
+  public String list(Model model) {
+    List<ReplyBoardDto> boardList = replyBoardService.getAllBoardList();
+    model.addAttribute("boardList", boardList);
     return "/board/list";
   }
 

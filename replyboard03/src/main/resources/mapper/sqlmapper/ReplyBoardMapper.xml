@@ -18,4 +18,8 @@
       0
     )
   </insert>
+
+  <select id="getAllBoardList" resultType="ReplyBoardDto">
+    SELECT * FROM REPLYBOARD03
+  </select>
 </mapper>
