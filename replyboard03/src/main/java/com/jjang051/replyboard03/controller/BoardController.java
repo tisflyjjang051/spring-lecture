@@ -3,7 +3,9 @@ package com.jjang051.replyboard03.controller;
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
 import com.jjang051.replyboard03.dto.ReplyJsonDto;
 import com.jjang051.replyboard03.service.ReplyBoardService;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +36,11 @@ public class BoardController {
   }
 
   @GetMapping("/list")
-  public String list(Model model) {
-    List<ReplyBoardDto> boardList = replyBoardService.getAllBoardList();
+  public String list(Model model, String category, String searchTxt) {
+    List<ReplyBoardDto> boardList = replyBoardService.getAllBoardList(
+      category,
+      searchTxt
+    );
     model.addAttribute("boardList", boardList);
     return "/board/list";
   }
@@ -100,9 +105,26 @@ public class BoardController {
     }
   }
 
+  @GetMapping("/searchList")
+  public String search(
+    ReplyBoardDto replyBoardDto,
+    Model model,
+    String searchTxt
+  ) {
+    log.info("searchTxt==={}", searchTxt);
+    //1. 서비스 등록
+    //2. dao에 매퍼 등록
+    List<ReplyBoardDto> boardList = replyBoardService.getSearchBoardList(
+      searchTxt
+    );
+    log.info("boardList==={}", boardList);
+    model.addAttribute("boardList", boardList);
+    return "/board/list";
+  }
+
   @PostMapping("/deleteAjaxProcess")
   @ResponseBody
-  public ReplyJsonDto deleteAjaxProcess(
+  public Map<String, Object> deleteAjaxProcess(
     ReplyBoardDto replyBoardDto,
     RedirectAttributes redirectAttributes
   ) {
@@ -111,12 +133,16 @@ public class BoardController {
     //return "aaa";
     int result = replyBoardService.deleteReplyBoard(replyBoardDto);
     int no = replyBoardDto.getNo();
-    ReplyJsonDto replyJsonDto = new ReplyJsonDto();
+    //ReplyJsonDto replyJsonDto = new ReplyJsonDto();
+    Map<String, Object> sendJson = new HashMap<>();
     if (result > 0) {
-      replyJsonDto.setMsg("ok");
+      //replyJsonDto.setMsg("ok");
+      sendJson.put("msg", "ok");
     } else {
-      replyJsonDto.setMsg("fail");
+      //replyJsonDto.setMsg("fail");
+      sendJson.put("msg", "fail");
     }
-    return replyJsonDto;
+    //return replyJsonDto;
+    return sendJson;
   }
 }

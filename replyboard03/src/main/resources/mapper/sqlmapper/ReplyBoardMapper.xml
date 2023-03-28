@@ -33,10 +33,17 @@
       0
     )
   </insert>
-  <select id="getAllBoardList" resultType="ReplyBoardDto">
+  <select id="getAllBoardList" resultType="ReplyBoardDto" parameterType="HashMap">
     <!-- SELECT * FROM REPLYBOARD03 -->
+
     SELECT ROWNUM AS NUM, B.* from
-      ( SELECT * FROM REPLYBOARD03 ORDER BY REGROUP DESC, RELEVEL ASC ) B
+      ( SELECT * FROM REPLYBOARD03   
+    <if test="category != null and searchTxt!=''">
+        WHERE ${category} LIKE '%' || #{searchTxt} || '%'
+    </if>
+     ORDER BY REGROUP DESC, RELEVEL ASC ) B
+    
+            
   </select>
 
   <select id="getSelectOne" resultType="ReplyBoardDto" parameterType="Integer">
@@ -53,7 +60,7 @@
 
   <update id="updateReLevel" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET RELEVEL = RELEVEL + 1 
-    WHERE REGROUP = #{reGroup} AND RELEVEL         <![CDATA[ > ]]> #{reLevel}
+    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                 <![CDATA[ > ]]> #{reLevel}
   </update>
 
   <update id="deleteReplyBoard" parameterType="ReplyBoardDto">

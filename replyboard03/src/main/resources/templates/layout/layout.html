@@ -120,9 +120,11 @@
           success:function(response){
             console.log(response);
             if(response.msg==="ok") {
-              //location.href="/board/list";
+              setTimeout(function(){
+                location.href="/board/list";  
+              },500)
             } else {
-              //location.reload();
+              location.reload();
             }
           },
         })

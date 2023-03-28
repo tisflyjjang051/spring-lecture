@@ -2,6 +2,7 @@ package com.jjang051.replyboard03.service;
 
 import com.jjang051.replyboard03.dao.ReplyBoardDao;
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
+import java.util.HashMap;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,14 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
     return result;
   }
 
-  public List<ReplyBoardDto> getAllBoardList() {
-    List<ReplyBoardDto> boardList = replyBoardDao.getAllBoardList();
+  public List<ReplyBoardDto> getAllBoardList(
+    String category,
+    String searchTxt
+  ) {
+    HashMap<String, Object> hashMap = new HashMap<>();
+    hashMap.put("category", category);
+    hashMap.put("searchTxt", searchTxt);
+    List<ReplyBoardDto> boardList = replyBoardDao.getAllBoardList(hashMap);
     return boardList;
   }
 
@@ -76,5 +83,10 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
   public int deleteReplyBoard(ReplyBoardDto replyBoardDto) {
     int result = replyBoardDao.deleteReplyBoard(replyBoardDto);
     return result;
+  }
+
+  public List<ReplyBoardDto> getSearchBoardList(String searchTxt) {
+    List<ReplyBoardDto> boardList = replyBoardDao.getSearchBoardList(searchTxt);
+    return boardList;
   }
 }

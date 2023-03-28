@@ -47,6 +47,21 @@
         </tr>
       </tbody>
     </table>
+    <div class="text-center">
+      <a href="/board/write" class="btn btn-primary btn-lg">글쓰기</a>
+    </div>
+    
+    <form class="mt-5" action="/board/list" method="get">
+      <select class="form-select" aria-label="Default select example" name="category">
+        <option value="subject" selected>제목</option>
+        <option value="contents">내용</option>
+        <option value="writer">글쓴이</option>
+      </select>
+      <input class="form-control" type="text" placeholder="Default input" aria-label="default input example" name="searchTxt">
+      <button class="btn btn-primary">SEARCH</button>
+    </form>
+    
+    
   </div>
   
   
