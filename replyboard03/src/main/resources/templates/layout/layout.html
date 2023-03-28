@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/layout.css">
   <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/jquery-3.6.4.min.js"></script>
 </head>
 <body>
   <header class="p-3 bg-dark text-white">
@@ -72,13 +73,61 @@
     </div>
   </div>
   
+  <div class="modal fade" tabindex="-1" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">삭제하시겠습니까?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="password" class="form-label">PASSWORD</label>
+            <input type="password" class="form-control" id="password" placeholder="password" name="password">
+          </div>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-primary" id="btnDeleteConfirm" data-bs-dismiss="modal">CONFIRM</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+          
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <script th:inline="javascript">
     /*<![CDATA[*/
       const msg = /*[[${msg}]]*/;
+      const no = /*[[${param.no}]]*/;
+      
       const memoModal = new bootstrap.Modal("#memoModal");
+      const deleteModal = new bootstrap.Modal("#deleteModal");
+      
       if(msg){
         memoModal.show();
       }
+      $("#btnDeleteAjax").on("click",function(e){
+        //e.preventDefault();
+        deleteModal.show();
+        return false;
+      });
+      $("#btnDeleteConfirm").on("click",function(e){
+        $.ajax({
+          url:"/board/deleteAjaxProcess",
+          data:{"no":no,"password":$("#password").val()},
+          type:"POST",
+          success:function(response){
+            console.log(response);
+            if(response.msg==="ok") {
+              //location.href="/board/list";
+            } else {
+              //location.reload();
+            }
+          },
+        })
+      });
+      
     /*]]>*/
   </script>
 </body>

@@ -1,6 +1,7 @@
 package com.jjang051.replyboard03.controller;
 
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
+import com.jjang051.replyboard03.dto.ReplyJsonDto;
 import com.jjang051.replyboard03.service.ReplyBoardService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -77,6 +79,11 @@ public class BoardController {
     return "/board/delete";
   }
 
+  // @GetMapping("/delete_ajax")
+  // public String delete_ajax() {
+  //   return "/board/delete_ajax";
+  // }
+
   @PostMapping("/deleteProcess")
   public String deleteProcess(
     ReplyBoardDto replyBoardDto,
@@ -91,5 +98,25 @@ public class BoardController {
       redirectAttributes.addFlashAttribute("msg", "비밀번호 확인해 주세요.");
       return "redirect:/board/delete?no=" + no;
     }
+  }
+
+  @PostMapping("/deleteAjaxProcess")
+  @ResponseBody
+  public ReplyJsonDto deleteAjaxProcess(
+    ReplyBoardDto replyBoardDto,
+    RedirectAttributes redirectAttributes
+  ) {
+    // log.info("no==={}", replyBoardDto.getNo());
+    // log.info("password==={}", replyBoardDto.getPassword());
+    //return "aaa";
+    int result = replyBoardService.deleteReplyBoard(replyBoardDto);
+    int no = replyBoardDto.getNo();
+    ReplyJsonDto replyJsonDto = new ReplyJsonDto();
+    if (result > 0) {
+      replyJsonDto.setMsg("ok");
+    } else {
+      replyJsonDto.setMsg("fail");
+    }
+    return replyJsonDto;
   }
 }
