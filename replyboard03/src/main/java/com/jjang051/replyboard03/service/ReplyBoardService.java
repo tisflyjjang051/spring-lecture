@@ -17,4 +17,6 @@ public interface ReplyBoardService {
   public int insertReplyBoard(ReplyBoardDto replyBoardDto);
 
   public int updateReLevel(ReplyBoardDto replyBoardDto);
+
+  public int deleteReplyBoard(ReplyBoardDto replyBoardDto);
 }

@@ -72,4 +72,9 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
   public int updateReLevel(ReplyBoardDto replyBoardDto) {
     return replyBoardDao.updateReLevel(replyBoardDto);
   }
+
+  public int deleteReplyBoard(ReplyBoardDto replyBoardDto) {
+    int result = replyBoardDao.deleteReplyBoard(replyBoardDto);
+    return result;
+  }
 }

@@ -71,4 +71,25 @@ public class BoardController {
     redirectAttributes.addFlashAttribute("msg", "글이 등록되었습니다.");
     return "redirect:/board/list";
   }
+
+  @GetMapping("/delete")
+  public String delete() {
+    return "/board/delete";
+  }
+
+  @PostMapping("/deleteProcess")
+  public String deleteProcess(
+    ReplyBoardDto replyBoardDto,
+    RedirectAttributes redirectAttributes
+  ) {
+    int result = replyBoardService.deleteReplyBoard(replyBoardDto);
+    int no = replyBoardDto.getNo();
+    if (result > 0) {
+      redirectAttributes.addFlashAttribute("msg", "삭제되었습니다.");
+      return "redirect:/board/list";
+    } else {
+      redirectAttributes.addFlashAttribute("msg", "비밀번호 확인해 주세요.");
+      return "redirect:/board/delete?no=" + no;
+    }
+  }
 }

@@ -15,7 +15,9 @@ spring:
 
 logging:
   level:
-    '[com.jjang051.replyboard03]' : DEBUG
+    root: INFO
+    '[com.jjang051.replyboard03]': DEBUG
+
 
 
 mybatis:

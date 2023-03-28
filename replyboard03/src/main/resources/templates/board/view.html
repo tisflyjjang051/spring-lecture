@@ -37,6 +37,7 @@
       <a href="/board/list" class="btn btn-lg btn-primary">LIST</a>
       <a href="/board/modify" class="btn btn-lg btn-primary">MODIFY</a>
       <a href="/board/reply" th:href="@{/board/reply(no=${replyBoardDto.no},reGroup=${replyBoardDto.reGroup}, reLevel=${replyBoardDto.reLevel}, reStep=${replyBoardDto.reStep})}" class="btn btn-lg btn-primary">REPLY</a>
+      <a href="/board/delete" th:href="@{/board/delete(no=${replyBoardDto.no})}" class="btn btn-lg btn-primary">DELETE</a>
     </div>
   </div>
 </body>
