@@ -89,4 +89,10 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
     List<ReplyBoardDto> boardList = replyBoardDao.getSearchBoardList(searchTxt);
     return boardList;
   }
+
+  @Override
+  public int modifyReplyBoard(ReplyBoardDto replyBoardDto) {
+    int result = replyBoardDao.modifyReplyBoard(replyBoardDto);
+    return result;
+  }
 }

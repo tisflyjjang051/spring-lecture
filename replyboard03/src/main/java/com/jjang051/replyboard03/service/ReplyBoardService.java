@@ -22,4 +22,6 @@ public interface ReplyBoardService {
   public int deleteReplyBoard(ReplyBoardDto replyBoardDto);
 
   public List<ReplyBoardDto> getSearchBoardList(String searchTxt);
+
+  public int modifyReplyBoard(ReplyBoardDto replyBoardDto);
 }

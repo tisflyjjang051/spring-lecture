@@ -3,9 +3,12 @@ package com.jjang051.replyboard03.controller;
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
 import com.jjang051.replyboard03.dto.ReplyJsonDto;
 import com.jjang051.replyboard03.service.ReplyBoardService;
+import com.jjang051.replyboard03.utils.ScriptWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -124,6 +127,30 @@ public class BoardController {
     log.info("boardList==={}", boardList);
     model.addAttribute("boardList", boardList);
     return "/board/list";
+  }
+
+  @GetMapping("/modify")
+  public String modify() {
+    return "/board/modify";
+  }
+
+  @PostMapping("/modifyProcess")
+  public String modifyProcess(
+    ReplyBoardDto replyBoardDto,
+    RedirectAttributes redirectAttributes,
+    HttpServletResponse response
+  ) throws IOException {
+    log.info("dto==={}", replyBoardDto);
+
+    int result = replyBoardService.modifyReplyBoard(replyBoardDto);
+    if (result > 0) {
+      redirectAttributes.addFlashAttribute("msg", "수정되었습니다.");
+      return "redirect:/board/list";
+    } else {
+      //redirectAttributes.addFlashAttribute("msg", "비밀번호를 확인해 주세요");
+      ScriptWriter.alertAndBack(response, "비밀번호를 확인해 주세요.");
+      return null;
+    }
   }
 
   @PostMapping("/deleteAjaxProcess")

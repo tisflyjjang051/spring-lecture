@@ -16,5 +16,6 @@ public interface ReplyBoardDao {
   int insertReplyBoard(ReplyBoardDto replyBoardDto);
   int updateReLevel(ReplyBoardDto replyBoardDto);
   int deleteReplyBoard(ReplyBoardDto replyBoardDto);
+  int modifyReplyBoard(ReplyBoardDto replyBoardDto);
   // List<ReplyBoardDto> searchReplyBoard(String searchTxt);
 }

@@ -81,10 +81,20 @@
 
   <update id="updateReLevel" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET RELEVEL = RELEVEL + 1 
-    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                             <![CDATA[ > ]]> #{reLevel}
+    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                                                                                                                     <![CDATA[ > ]]> #{reLevel}
   </update>
 
   <update id="deleteReplyBoard" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET AVAILABLE = 0 WHERE NO = #{no} AND PASSWORD = #{password}
   </update>
+
+  <update id="modifyReplyBoard" parameterType="ReplyBoardDto">
+    UPDATE REPLYBOARD03 SET 
+                            SUBJECT = #{subject}, 
+                            <!-- WRITER = #{writer},  -->
+                            CONTENTS = #{contents}
+                        WHERE NO = #{no} and PASSWORD = #{password}
+  </update>
+
+
 </mapper>
