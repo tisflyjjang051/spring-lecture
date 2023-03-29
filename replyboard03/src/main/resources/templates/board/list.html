@@ -32,7 +32,7 @@
           <td class="text-start ps-sm-5">
             
             <a th:text="${item.subject}" href="/board/view" 
-               th:href="@{/board/view(no=${item.no})}" th:class="${item.reStep > 1}? 'space' : 'aaa bbb'" th:classappend="'space'+${item.reStep}"
+               th:href="@{/board/view(no=${item.no},num=${item.num})}" th:class="${item.reStep > 1}? 'space' : 'aaa bbb'" th:classappend="'space'+${item.reStep}"
                th:if="${item.available}">
               아버지를 아버지라 부르지 못하고...
             </a>

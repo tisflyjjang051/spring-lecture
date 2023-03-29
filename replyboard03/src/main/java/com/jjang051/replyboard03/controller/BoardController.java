@@ -53,13 +53,15 @@ public class BoardController {
   }
 
   @GetMapping("/view")
-  public String view(Model model, int no) {
+  public String view(Model model, int no, int num) {
     replyBoardService.updateHit(no);
     ReplyBoardDto replyBoardDto = replyBoardService.getSelectOne(no);
-
-    log.info("replyBoardDto==={}", replyBoardDto);
+    ReplyBoardDto prevBoardDto = replyBoardService.getPrevSelect(num);
+    ReplyBoardDto nextBoardDto = replyBoardService.getNextSelect(num);
 
     model.addAttribute("replyBoardDto", replyBoardDto);
+    model.addAttribute("prevBoardDto", prevBoardDto);
+    model.addAttribute("nextBoardDto", nextBoardDto);
 
     return "/board/view";
   }

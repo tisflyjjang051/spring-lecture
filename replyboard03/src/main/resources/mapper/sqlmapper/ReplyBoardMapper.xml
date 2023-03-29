@@ -81,7 +81,7 @@
 
   <update id="updateReLevel" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET RELEVEL = RELEVEL + 1 
-    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                                                                                                                     <![CDATA[ > ]]> #{reLevel}
+    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                                                                                                                                                                     <![CDATA[ > ]]> #{reLevel}
   </update>
 
   <update id="deleteReplyBoard" parameterType="ReplyBoardDto">
@@ -91,10 +91,25 @@
   <update id="modifyReplyBoard" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET 
                             SUBJECT = #{subject}, 
-                            <!-- WRITER = #{writer},  -->
+                                                                            <!-- WRITER = #{writer},  -->
                             CONTENTS = #{contents}
                         WHERE NO = #{no} and PASSWORD = #{password}
   </update>
+
+
+  <select id="getPrevSelect" parameterType="Integer" resultType="ReplyBoardDto">
+    SELECT * FROM 
+     (SELECT ROWNUM AS NUM, B.* from
+      ( SELECT * FROM REPLYBOARD03 ORDER BY REGROUP DESC, RELEVEL ASC ) B)
+    WHERE NUM = #{NUM} - 1
+  </select>
+
+  <select id="getNextSelect" parameterType="Integer" resultType="ReplyBoardDto">
+    SELECT * FROM 
+     (SELECT ROWNUM AS NUM, B.* from
+      ( SELECT * FROM REPLYBOARD03 ORDER BY REGROUP DESC, RELEVEL ASC ) B)
+    WHERE NUM = #{NUM} + 1
+  </select>
 
 
 </mapper>
