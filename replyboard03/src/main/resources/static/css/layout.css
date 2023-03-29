@@ -12,7 +12,12 @@ a {
 }
 
 table .contents {
-  min-height: 300px !important;
+  min-height: 300px;
+  white-space: pre-wrap;
+}
+table .th {
+  width: 200px;
+  background-color: #f8f8f8;
 }
 
 .space:before {
@@ -35,4 +40,19 @@ table .contents {
 
 .space4 {
   padding-left: 60px;
+}
+
+#searchForm {
+  padding: 0 150px;
+  display: flex;
+}
+#searchForm select {
+  flex-basis: 200px;
+}
+#searchForm input {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+#searchForm button {
+  flex-basis: 150px;
 }

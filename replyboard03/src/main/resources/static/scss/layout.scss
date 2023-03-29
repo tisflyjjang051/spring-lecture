@@ -10,7 +10,12 @@ a {
 }
 table{
   .contents {
-    min-height: 300px !important;
+    min-height: 300px;
+    white-space: pre-wrap;
+  }
+  .th {
+    width:200px;
+    background-color: #f8f8f8;
   }
 } 
 
@@ -34,5 +39,34 @@ table{
   padding-left: 60px;
 }
 
+#searchForm {
+  padding:0 150px;
+  display: flex;
+  select {
+    flex-basis: 200px;
+  }
+  input {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+  button {
+    flex-basis:150px;
+  }
+}
 
 
+
+// #searchForm {
+//   padding:0 100px;
+//   display: flex;
+//   select {
+//     flex-basis: 200px;
+//   }
+//   input {
+//     flex-grow: 1;
+//     margin: 0 10px;
+//   }
+//   button {
+//     flex-basis: 150px;
+//   }
+// }

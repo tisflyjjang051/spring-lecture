@@ -24,10 +24,14 @@ public class BoardController {
   @Autowired
   ReplyBoardService replyBoardService;
 
-  //board/write
   @GetMapping("/write")
   public String write() {
     return "/board/write";
+  }
+
+  @GetMapping("/file")
+  public String file() {
+    return "/board/file";
   }
 
   @GetMapping("/reply")

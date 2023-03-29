@@ -10,6 +10,10 @@
     <h2>VIEW</h2>
     
     <table class="table mt-5">
+      <colgroup>
+        <col class="th">
+        <col class="td">
+      </colgroup>
       <tbody>
         <tr>
           <th>SUBJECT</th>
@@ -29,7 +33,11 @@
         </tr>
         <tr>
           <th scope="row">CONTENTS</th>
-          <td th:text="${replyBoardDto.contents}" class="contents">contents</td>
+          <td>
+            <div th:text="${replyBoardDto.contents}" class="contents">
+              
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
