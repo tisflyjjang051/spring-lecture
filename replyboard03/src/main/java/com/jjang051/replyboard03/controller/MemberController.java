@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,12 +56,31 @@ public class MemberController {
     return "redirect:/";
   }
 
+  @GetMapping("/info")
+  public String info() {
+    return "/member/info";
+  }
+
+  @GetMapping("/logout")
+  public String logout(
+    HttpServletRequest request,
+    RedirectAttributes redirectAttributes
+  ) {
+    HttpSession session = request.getSession();
+    //session.invalidate();
+    session.removeAttribute("loggedMember");
+    redirectAttributes.addFlashAttribute("msg", "로그아웃되었습니다.");
+    return "redirect:/";
+  }
+
   @PostMapping("/joinProcess")
   public String joinProcess(
+    //@Valid @ModelAttribute("memberDto") MemberDto memberDto,
     MemberDto memberDto,
     RedirectAttributes redirectAttributes,
-    //BindingResult bindingResult,
-    HttpServletResponse response
+    BindingResult bindingResult,
+    HttpServletResponse response,
+    Model model
   ) throws IOException {
     int result = memberService.insertMember(memberDto);
     if (result > 0) {
