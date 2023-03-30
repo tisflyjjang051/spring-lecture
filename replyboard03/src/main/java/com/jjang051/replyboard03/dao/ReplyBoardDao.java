@@ -1,6 +1,7 @@
 package com.jjang051.replyboard03.dao;
 
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
+import com.jjang051.replyboard03.utils.Criteria;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -19,5 +20,6 @@ public interface ReplyBoardDao {
   int modifyReplyBoard(ReplyBoardDto replyBoardDto);
   ReplyBoardDto getPrevSelect(int num);
   ReplyBoardDto getNextSelect(int num);
+  int totalCount(Criteria criteria);
   // List<ReplyBoardDto> searchReplyBoard(String searchTxt);
 }

@@ -3,12 +3,15 @@ package com.jjang051.replyboard03.controller;
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
 import com.jjang051.replyboard03.dto.ReplyJsonDto;
 import com.jjang051.replyboard03.service.ReplyBoardService;
+import com.jjang051.replyboard03.utils.Criteria;
+import com.jjang051.replyboard03.utils.PageMaker;
 import com.jjang051.replyboard03.utils.ScriptWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +51,7 @@ public class BoardController {
       category,
       searchTxt
     );
+
     model.addAttribute("boardList", boardList);
     return "/board/list";
   }

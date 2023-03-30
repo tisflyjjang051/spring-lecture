@@ -81,7 +81,7 @@
 
   <update id="updateReLevel" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET RELEVEL = RELEVEL + 1 
-    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                                                                                                                                                                     <![CDATA[ > ]]> #{reLevel}
+    WHERE REGROUP = #{reGroup} AND RELEVEL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <![CDATA[ > ]]> #{reLevel}
   </update>
 
   <update id="deleteReplyBoard" parameterType="ReplyBoardDto">
@@ -91,7 +91,7 @@
   <update id="modifyReplyBoard" parameterType="ReplyBoardDto">
     UPDATE REPLYBOARD03 SET 
                             SUBJECT = #{subject}, 
-                                                                            <!-- WRITER = #{writer},  -->
+                                                                                                            <!-- WRITER = #{writer},  -->
                             CONTENTS = #{contents}
                         WHERE NO = #{no} and PASSWORD = #{password}
   </update>
@@ -110,6 +110,9 @@
       ( SELECT * FROM REPLYBOARD03 ORDER BY REGROUP DESC, RELEVEL ASC ) B)
     WHERE NUM = #{NUM} + 1
   </select>
-
+  <select id="totalCount" resultType="Integer" parameterType="com.jjang051.replyboard03.utils.Criteria">
+    SELECT COUNT(*) FROM REPLYBOARD03
+    <include refid="search" />
+  </select>
 
 </mapper>

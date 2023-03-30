@@ -1,6 +1,7 @@
 package com.jjang051.replyboard03.service;
 
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
+import com.jjang051.replyboard03.utils.Criteria;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface ReplyBoardService {
   public ReplyBoardDto getPrevSelect(int num);
 
   public ReplyBoardDto getNextSelect(int num);
+
+  public int totalCount(Criteria criteria);
 }

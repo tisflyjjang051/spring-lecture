@@ -81,3 +81,19 @@ a.none {
 .prevAndNext div a {
   flex-grow: 1;
 }
+
+.joinForm {
+  width: 400px;
+  margin: auto;
+}
+
+.errorTxt {
+  color: #f00;
+  font-size: 12px;
+  margin: 5px;
+}
+.errorTxt:before {
+  content: "*";
+  display: inline-block;
+  margin-right: 5px;
+}

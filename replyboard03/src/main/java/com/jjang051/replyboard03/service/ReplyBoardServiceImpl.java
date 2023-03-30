@@ -2,6 +2,7 @@ package com.jjang051.replyboard03.service;
 
 import com.jjang051.replyboard03.dao.ReplyBoardDao;
 import com.jjang051.replyboard03.dto.ReplyBoardDto;
+import com.jjang051.replyboard03.utils.Criteria;
 import java.util.HashMap;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -103,5 +104,9 @@ public class ReplyBoardServiceImpl implements ReplyBoardService {
   public ReplyBoardDto getPrevSelect(int num) {
     ReplyBoardDto replyBoardDto = replyBoardDao.getPrevSelect(num);
     return replyBoardDto;
+  }
+
+  public int totalCount(Criteria criteria) {
+    return replyBoardDao.totalCount(criteria);
   }
 }

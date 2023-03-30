@@ -94,3 +94,18 @@ a.none {
 //     flex-basis: 150px;
 //   }
 // }
+
+.joinForm {
+  width:400px;
+  margin: auto;
+}
+.errorTxt {
+  color:#f00;
+  font-size: 12px;
+  margin: 5px;
+  &:before {
+    content: '*';
+    display: inline-block;
+    margin-right: 5px;
+  }
+}
