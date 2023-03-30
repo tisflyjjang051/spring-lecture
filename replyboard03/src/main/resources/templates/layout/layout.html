@@ -101,8 +101,16 @@
   
   <script th:inline="javascript">
     /*<![CDATA[*/
-      const msg = /*[[${msg}]]*/;
-      const no = /*[[${param.no}]]*/;
+      const msg = [[${msg}]];
+      const param = [[${param}]];
+      const session = [[${session}]];
+      
+      
+      
+      console.log(session);
+      console.log(param);
+      
+      
       
       const memoModal = new bootstrap.Modal("#memoModal");
       const deleteModal = new bootstrap.Modal("#deleteModal");
@@ -115,6 +123,21 @@
         deleteModal.show();
         return false;
       });
+      
+      $(".btnInfo").on("click",function(){
+        deleteModal.show();
+        const pw = session.loggedMember.userPw;
+        console.log(pw);
+        $("#deleteModal .modal-title").text("비밀번호를 입력해 주세요.");
+        $("#btnDeleteConfirm").on("click",function(e){
+          if($("#password").val()==pw){
+            location.href="/member/info";
+          } else {
+            history.back();
+          }
+        })
+        return false;
+      })
       $("#btnDeleteConfirm").on("click",function(e){
         $.ajax({
           url:"/board/deleteAjaxProcess",
@@ -132,20 +155,8 @@
           },
         })
       });
-      $(".btnInfo").on("click",function(){
-        deleteModal.show();
-        const pw = [[${session.loggedMember.userPw}]];
-        console.log(pw);
-        $("#deleteModal .modal-title").text("비밀번호를 입력해 주세요.");
-        $("#btnDeleteConfirm").on("click",function(e){
-          if($("#password").val()==pw){
-            location.href="/member/info";
-          } else {
-            history.back();
-          }
-        })
-        return false;
-      })
+      
+      
     /*]]>*/
   </script>
   

@@ -14,7 +14,9 @@
       <div class="form-floating">
         <input type="text" class="form-control userId" id="floatingInput" placeholder="User Id" name="userId">
         <label for="floatingInput">User Id</label>
-        <!-- <p th:if="${#fields.hasErrors('userId')}" th:errorclass="error" th:errors="*{userId}"></p> -->
+        <p th:if="${#fields.hasErrors('userId')}"   th:errorclass="error" th:errors="*{userId}"></p>
+        <p th:if="${#fields.hasErrors('userName')}" th:errorclass="error" th:errors="*{userName}"></p>
+
         <!-- <p th:if="${#fields.hasErrors('userId')}" th:errorclass="error" th:errors="*{userId}"></p> -->
 
       </div>
