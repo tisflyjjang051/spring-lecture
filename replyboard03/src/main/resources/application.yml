@@ -1,6 +1,11 @@
 #server port
 server: 
   port: 9091
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
 
 #spring setting
 spring:

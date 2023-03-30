@@ -6,9 +6,12 @@ import com.jjang051.replyboard03.utils.ScriptWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/member")
-@Log4j2
+@Slf4j
 public class MemberController {
 
   @Autowired
@@ -33,10 +36,30 @@ public class MemberController {
     return "/member/join";
   }
 
+  @GetMapping("/login")
+  public String login() {
+    return "/member/login";
+  }
+
+  @PostMapping("/loginProcess")
+  public String loginProcess(
+    MemberDto memberDto,
+    RedirectAttributes redirectAttributes,
+    HttpServletRequest request
+  ) {
+    HttpSession session = request.getSession();
+
+    redirectAttributes.addFlashAttribute("msg", "로그인 되었습니다.");
+    MemberDto loggedMember = memberService.loginMember(memberDto);
+    session.setAttribute("loggedMember", loggedMember);
+    return "redirect:/";
+  }
+
   @PostMapping("/joinProcess")
   public String joinProcess(
     MemberDto memberDto,
     RedirectAttributes redirectAttributes,
+    //BindingResult bindingResult,
     HttpServletResponse response
   ) throws IOException {
     int result = memberService.insertMember(memberDto);

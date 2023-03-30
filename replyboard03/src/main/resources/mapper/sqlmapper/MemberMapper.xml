@@ -16,5 +16,9 @@
     )
   </insert>
 
+  <select id="loginMember" parameterType="MemberDto" resultType="MemberDto">
+    SELECT * FROM REPLYBOARDMEMBER where USERID = #{userId} AND userPw = #{userPw}
+  </select>
+
 
 </mapper>

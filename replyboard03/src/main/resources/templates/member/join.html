@@ -8,12 +8,15 @@
 <body>
   <div class="container" id="contents" layout:fragment="contents">
     <h2>JOIN</h2>
-    <form action="/member/joinProcess" method="post" class="joinForm">
+    <form action="/member/joinProcess" method="post" class="joinForm" th:object="${memberDto}">
+      
       <h3 class="h3 mb-3 mt-5 fw-normal">Please sign in</h3>
       <div class="form-floating">
         <input type="text" class="form-control userId" id="floatingInput" placeholder="User Id" name="userId">
         <label for="floatingInput">User Id</label>
-        <!-- <p th:if="${#fields.hasErrors('userId')}" th:errorclass="errorTxt" th:errors="*{userId}"></p> -->
+        <!-- <p th:if="${#fields.hasErrors('userId')}" th:errorclass="error" th:errors="*{userId}"></p> -->
+        <!-- <p th:if="${#fields.hasErrors('userId')}" th:errorclass="error" th:errors="*{userId}"></p> -->
+
       </div>
       <div class="form-floating mt-2">
         <input type="password" class="form-control userPw" id="floatingPassword" placeholder="Password" name="userPw">
