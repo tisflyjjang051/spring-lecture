@@ -34,19 +34,8 @@ public class MemberController {
   @Autowired
   MemberService memberService;
 
-  @GetMapping("/join")
-  public String join() {
-    return "/member/join";
-  }
-
   @GetMapping("/login")
-  public String login(
-    @CookieValue(value = "sessionCookie", required = false) Cookie sessionCookie
-  ) {
-    if (sessionCookie != null) {
-      //cookieValue 변수에 쿠키 값을 저장한다.
-      log.info(sessionCookie.getValue());
-    }
+  public String login() {
     return "/member/login";
   }
 
@@ -62,13 +51,6 @@ public class MemberController {
     redirectAttributes.addFlashAttribute("msg", "로그인 되었습니다.");
     MemberDto loggedMember = memberService.loginMember(memberDto);
     session.setAttribute("loggedMember", loggedMember);
-
-    Cookie cookie = new Cookie("cookie", loggedMember.getUserName());
-    cookie.setPath("/");
-    cookie.setMaxAge(10);
-    cookie.setHttpOnly(true);
-    response.addCookie(cookie);
-
     return "redirect:/";
   }
 
@@ -87,18 +69,20 @@ public class MemberController {
     //session.invalidate();
     session.removeAttribute("loggedMember");
     redirectAttributes.addFlashAttribute("msg", "로그아웃되었습니다.");
-    Cookie cookie = new Cookie("cookie", null);
-    cookie.setMaxAge(0);
-    response.addCookie(cookie);
-    cookie.setPath("/");
     return "redirect:/";
   }
 
-  @PostMapping("/joinProcess")
+  @GetMapping("/join")
+  public String join(Model model) {
+    model.addAttribute("memberDto", new MemberDto());
+    return "/member/join";
+  }
+
+  @PostMapping("/join")
   public String joinProcess(
     @Valid MemberDto memberDto,
-    RedirectAttributes redirectAttributes,
     BindingResult bindingResult,
+    RedirectAttributes redirectAttributes,
     HttpServletResponse response,
     Model model
   ) throws IOException {
