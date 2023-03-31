@@ -115,46 +115,70 @@
       const memoModal = new bootstrap.Modal("#memoModal");
       const deleteModal = new bootstrap.Modal("#deleteModal");
       
+      let isState = null;
       if(msg){
         memoModal.show();
       }
       $("#btnDeleteAjax").on("click",function(e){
         //e.preventDefault();
+        isState="delete";
+        $("#deleteModal .modal-title").text("비밀번호를 입력해 주세요.~~~~");
         deleteModal.show();
         return false;
       });
       
       $(".btnInfo").on("click",function(){
+        isState="info";
         deleteModal.show();
-        const pw = session.loggedMember.userPw;
-        console.log(pw);
         $("#deleteModal .modal-title").text("비밀번호를 입력해 주세요.");
-        $("#btnDeleteConfirm").on("click",function(e){
-          if($("#password").val()==pw){
-            location.href="/member/info";
-          } else {
-            history.back();
-          }
-        })
         return false;
-      })
-      $("#btnDeleteConfirm").on("click",function(e){
-        $.ajax({
-          url:"/board/deleteAjaxProcess",
-          data:{"no":no,"password":$("#password").val()},
-          type:"POST",
-          success:function(response){
-            console.log(response);
-            if(response.msg==="ok") {
-              setTimeout(function(){
-                location.href="/board/list";  
-              },500)
-            } else {
-              location.reload();
-            }
-          },
-        })
       });
+      $("#btnDeleteConfirm").on("click",function(e){
+          if(isState==="info") {
+            const pw = session.loggedMember.userPw;
+            console.log(pw);
+            if($("#password").val()==pw){
+              location.href="/member/info";
+            } else {
+              history.back();
+            }
+          } else {
+              console.log(param.no[0]);
+              $.ajax({
+                url:"/board/deleteAjaxProcess",
+                data:{"no":param.no[0],"password":$("#password").val()},
+                type:"POST",
+                success:function(response){
+                  console.log(response);
+                  if(response.msg==="ok") {
+                    setTimeout(function(){
+                      location.href="/board/list";  
+                    },500)
+                  } else {
+                    location.reload();
+                  }
+                },
+              })
+          }
+      })
+      // $("#btnDeleteConfirm").on("click",function(e){
+      //   console.log("이건 밑에꺼");
+      //   $.ajax({
+      //     url:"/board/deleteAjaxProcess",
+      //     data:{"no":no,"password":$("#password").val()},
+      //     type:"POST",
+      //     success:function(response){
+      //       console.log(response);
+      //       if(response.msg==="ok") {
+      //         setTimeout(function(){
+      //           location.href="/board/list";  
+      //         },500)
+      //       } else {
+      //         location.reload();
+      //       }
+      //     },
+      //   })
+      // });
       
       
     /*]]>*/

@@ -46,12 +46,15 @@ public class MemberController {
     HttpServletRequest request,
     HttpServletResponse response
   ) {
-    HttpSession session = request.getSession();
-
-    redirectAttributes.addFlashAttribute("msg", "로그인 되었습니다.");
     MemberDto loggedMember = memberService.loginMember(memberDto);
-    session.setAttribute("loggedMember", loggedMember);
-    return "redirect:/";
+    if (loggedMember == null) {
+      return "redirect:/member/login";
+    } else {
+      HttpSession session = request.getSession();
+      redirectAttributes.addFlashAttribute("msg", "로그인 되었습니다.");
+      session.setAttribute("loggedMember", loggedMember);
+      return "redirect:/";
+    }
   }
 
   @GetMapping("/info")
