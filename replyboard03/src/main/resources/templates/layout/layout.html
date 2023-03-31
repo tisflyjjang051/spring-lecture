@@ -34,7 +34,13 @@
         </div>
         
         <div class="text-end" th:unless="${session.loggedMember == null}">
-          <a href="/member/info" class="btnInfo" th:text="${session.loggedMember.userName}">userName</a>
+          <a href="/member/info" class="btnInfo" >
+              <span th:text="${session.loggedMember.userName}">userName</span>
+              <span>
+                <!-- <img src="/images/fjkdjs.jpg" alt="" th:src="${session.loggedMember.renameFilePath}" /> -->
+                <img src="/images/fjkdjs.jpg" alt="" th:src="@{|/upload/${session.loggedMember.renameFilePath}|}" />
+              </span>
+          </a>
           <a href="/member/logout">로그아웃</a>
         </div>
         
@@ -152,7 +158,7 @@
                   console.log(response);
                   if(response.msg==="ok") {
                     setTimeout(function(){
-                      location.href="/board/list";  
+                      location.href="/board/list";
                     },500)
                   } else {
                     location.reload();

@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class MemberDto {
@@ -39,4 +40,9 @@ public class MemberDto {
   @NotBlank(message = "필수입력사항입니다.")
   @Size(min = 3, max = 20, message = "id는 5글자 이상 20 글자 이하여야 합니다.")
   private String userName;
+
+  private MultipartFile originalFile; // 진짜 파일...
+
+  private String originalFilePath; // 원본 파일이름...
+  private String renameFilePath; // 진짜 파일이 저장되는 경로+변경된 파일 이름
 }

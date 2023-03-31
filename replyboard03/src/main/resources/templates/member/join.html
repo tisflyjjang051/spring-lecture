@@ -8,7 +8,8 @@
 <body>
   <div class="container" id="contents" layout:fragment="contents">
     <h2>JOIN</h2>
-    <form action="/member/join" method="post" class="joinForm" th:object="${memberDto}">
+    <form action="/member/join" method="post" class="joinForm" 
+              th:object="${memberDto}"  enctype="multipart/form-data">
       <h3 class="h3 mb-3 mt-5 fw-normal">Please sign in</h3>
       <div class="form-floating">
         <input type="text" class="form-control userId" id="floatingInput" placeholder="User Id" name="userId">
@@ -30,6 +31,9 @@
         <input type="text" class="form-control" id="floatingInput" placeholder="User Name" name="userName">
         <label for="floatingInput">User Name</label>
         <p th:if="${#fields.hasErrors('userName')}" th:errorclass="errorTxt" th:errors="*{userName}"></p>
+      </div>
+      <div class="mt-2">
+        <input class="form-control" type="file" id="formFile" name="originalFile">
       </div>
       <hr>
       <div>

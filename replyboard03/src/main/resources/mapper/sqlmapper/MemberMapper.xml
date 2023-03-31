@@ -12,7 +12,9 @@
       #{userPw},
       #{email},
       #{userName},
-      SYSDATE
+      SYSDATE,
+      #{originalFilePath},
+      #{renameFilePath}
     )
   </insert>
 
