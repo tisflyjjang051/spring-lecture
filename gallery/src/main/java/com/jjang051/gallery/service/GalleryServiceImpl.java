@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,5 +42,11 @@ public class GalleryServiceImpl implements GalleryService {
 
     int result = galleryDao.insertGallery(galleryDto);
     return result;
+  }
+
+  @Override
+  public List<GalleryDto> getAllList() {
+    List<GalleryDto> galleryList = galleryDao.getAllList();
+    return galleryList;
   }
 }

@@ -13,4 +13,7 @@
       0
     )
   </insert>
+  <select id="getAllList" resultType="GalleryDto">
+    SELECT * FROM GALLERY ORDER BY NO
+  </select>
 </mapper>
