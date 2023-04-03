@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="com.jjang051.gallery.dao.GalleryDao">
   <insert id="insertGallery" parameterType="GalleryDto">
     INSERT INTO GALLERY VALUES (
-      GALLERY_SEQ.NEXTVAL_VAL,
+      GALLERY_SEQ.NEXTVAL,
       #{title},
       #{contents},
       #{original},
