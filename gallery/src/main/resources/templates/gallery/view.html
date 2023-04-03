@@ -44,8 +44,50 @@
     </div>
   </div>
   
-  <script>
+  <script th:inline="javascript">
+    const galleryId = [[${galleryDto.no}]];
+    console.log(galleryId);
     
+    
+    function loadReply() {
+      const sendData = {
+        galleryId:galleryId,
+      }  
+      $.ajax({
+        url:"/getReply/"+galleryId,
+        data:sendData,
+        type:"POST",
+        success:function(response) {
+          console.log(response);
+          let tempHtml="";
+          $.each(response,function(idx,item){
+            tempHtml+=`<li>${item.comments}</li>`
+          });
+          $(".replyBox ul").html(tempHtml);
+        }
+      })
+    }
+    loadReply();
+    
+    $("#btnConfirm").on("click",function(){
+      const sendData = {
+        galleryId:galleryId,
+        comments:$(".reply").val()
+      }
+      $.ajax({
+        url:"/insertReply",
+        data:sendData,
+        type:"POST",
+        success:function(response) {
+          //console.log(response);
+          let tempHtml="";
+          $.each(response,function(idx,item){
+            tempHtml+=`<li>${item.comments}</li>`
+          });
+          $(".replyBox ul").html(tempHtml);
+        }
+      })
+    })
   </script>
   
   

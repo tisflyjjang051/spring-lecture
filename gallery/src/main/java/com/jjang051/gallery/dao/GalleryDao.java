@@ -1,6 +1,7 @@
 package com.jjang051.gallery.dao;
 
 import com.jjang051.gallery.dto.GalleryDto;
+import com.jjang051.gallery.dto.ReplyDto;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,4 +17,6 @@ public interface GalleryDao {
   GalleryDto viewGallery(int no);
 
   int insertReply(ReplyDto replyDto);
+
+  List<ReplyDto> getAllReply(int galleryId);
 }

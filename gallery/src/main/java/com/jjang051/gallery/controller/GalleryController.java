@@ -1,7 +1,7 @@
 package com.jjang051.gallery.controller;
 
-import com.jjang051.gallery.dao.ReplyDto;
 import com.jjang051.gallery.dto.GalleryDto;
+import com.jjang051.gallery.dto.ReplyDto;
 import com.jjang051.gallery.service.GalleryService;
 import java.util.List;
 import lombok.extern.log4j.Log4j2;
@@ -47,14 +47,24 @@ public class GalleryController {
     return "/gallery/view";
   }
 
+  @PostMapping("/getReply/{no}")
+  @ResponseBody
+  public List<ReplyDto> getReply(@PathVariable("no") int no) {
+    List<ReplyDto> replyList = galleryService.getAllReply(no);
+    return replyList;
+  }
+
   @PostMapping("/insertReply")
   @ResponseBody
-  public String insertReply(ReplyDto replyDto) {
+  public List<ReplyDto> insertReply(ReplyDto replyDto) {
     int result = galleryService.insertReply(replyDto);
+    List<ReplyDto> replyList = galleryService.getAllReply(
+      replyDto.getGalleryId()
+    );
     if (result > 0) {
-      return "ok";
+      return replyList;
     } else {
-      return "fail";
+      return replyList;
     }
   }
 }

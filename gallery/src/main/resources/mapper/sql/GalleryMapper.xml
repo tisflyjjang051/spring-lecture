@@ -26,6 +26,9 @@
       #{comments}
     )
   </insert>
+  <select id="getAllReply" resultType="ReplyDto" parameterType="Integer">
+    SELECT * FROM GALLERY_COMMENT WHERE GALLERYID = #{galleryId}
+  </select>
 
 
 
