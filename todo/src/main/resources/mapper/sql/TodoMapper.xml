@@ -8,6 +8,11 @@
   </insert>
 
   <select id="getAllTodo" resultType="TodoDto" parameterType="String">
-    SELECT * FROM TODO WHERE PICKEDDATE = #{pickedDate}
+    SELECT * FROM TODO WHERE PICKEDDATE = #{pickedDate} ORDER BY NO DESC
   </select>
+
+  <delete id="deleteTodo" parameterType="Integer">
+    DELETE FROM TODO WHERE NO = #{no}
+  </delete>
+
 </mapper>
