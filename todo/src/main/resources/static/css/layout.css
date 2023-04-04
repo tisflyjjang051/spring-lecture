@@ -20,7 +20,22 @@
   display: flex;
   border-bottom: 1px dotted #ccc;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 10px 20px;
+  position: relative;
+}
+.todoListBox .todoList li:before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 2px;
+  background-color: #f00;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transition: all 0.25s ease;
+}
+.todoListBox .todoList li.done:before {
+  width: 200px;
 }
 .todoListBox .todoList li .txt {
   flex-grow: 1;
