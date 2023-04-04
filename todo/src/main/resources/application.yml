@@ -29,9 +29,9 @@ logging:
     root: INFO
     '[com.jjang051.todo]': DEBUG
 
-# mybatis:
-#   mapper-locations: classpath:mapper/sql/**/*.xml
-#   config-location: classpath:mapper/config/config.xml
+mybatis:
+  mapper-locations: classpath:mapper/sql/**/*.xml
+  config-location: classpath:mapper/config/config.xml
 
 #나는 세팅 모든게 다 세팅
 
