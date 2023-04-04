@@ -15,7 +15,7 @@
   <header class="header">TODO</header>
   <div class="wrap">
     <div class="inputBox input-group">
-        <input type="text" class="form-control" placeholder="오늘의 할 일">
+        <input type="text" class="form-control todo" placeholder="오늘의 할 일">
         <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
     </div>
     
@@ -45,5 +45,65 @@
       </p>
     </footer>
   </div>
+  
+  <script>
+    loadData();
+    function loadData(){
+      const sendData  = {
+          pickedDate:"20230404"
+        }
+      $.ajax({
+        url:"/list",
+        type:"GET",
+        data:sendData,
+        success:function(response){
+          console.log(response);
+          let tempHtml="";
+          $.each(response,function(idx,item){
+            tempHtml+=`<li class="${item.done==1?"done":""}">
+          <span class="txt">${item.todo}</span>
+          <button>DONE</button>
+          <button>DEL</button>
+        </li>`
+          })
+          $(".todoList").html(tempHtml);
+        },
+        error:function(err){
+          console.log(err);
+        }
+      })
+    }
+    
+    
+    $(".inputBox .btn").on("click",function(){
+      const sendData  = {
+        todo:$(".inputBox .todo").val(),
+        done:0,
+        pickedDate:"20230404"
+      }
+      $.ajax({
+        url:"/insert",
+        type:"POST",
+        data:sendData,
+        success:function(response){
+          console.log(response);
+          let tempHtml="";
+          $.each(response,function(idx,item){
+            tempHtml+=`<li class="${item.done==1?"done":""}">
+          <span class="txt">${item.todo}</span>
+          <button>DONE</button>
+          <button>DEL</button>
+        </li>`
+          })
+          $(".todoList").html(tempHtml);
+        },
+        error:function(err){
+          console.log(err);
+        }
+      })
+    })
+  </script>
+  
+  
 </body>
 </html>

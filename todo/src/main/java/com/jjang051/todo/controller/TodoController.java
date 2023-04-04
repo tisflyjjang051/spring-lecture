@@ -21,6 +21,13 @@ public class TodoController {
     return "/todo/index";
   }
 
+  @GetMapping("/list")
+  @ResponseBody
+  public List<TodoDto> list(String pickedDate) {
+    List<TodoDto> todoList = todoService.getAllTodo(pickedDate);
+    return todoList;
+  }
+
   @PostMapping("/insert")
   @ResponseBody
   public List<TodoDto> insertTodo(TodoDto todoDto) {
