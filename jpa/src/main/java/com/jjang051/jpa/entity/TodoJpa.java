@@ -14,10 +14,9 @@ import lombok.Data;
 public class TodoJpa {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int no;
 
-  @Column(nullable = true, updatable = false, length = 300, unique = true)
   private String todo;
 
   private int done;

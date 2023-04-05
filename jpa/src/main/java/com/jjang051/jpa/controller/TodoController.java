@@ -4,6 +4,7 @@ import com.jjang051.jpa.entity.TodoJpa;
 import com.jjang051.jpa.service.TodoJpaService;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,14 +27,6 @@ public class TodoController {
 
   @PostMapping("/insert")
   public String insertProcess(TodoJpa todoJpa) {
-    log.info("modify===" + todoJpa);
-    todoJpaService.insertTodo(todoJpa);
-    return "redirect:/list";
-  }
-
-  @PostMapping("/modifyProcess")
-  public String modifyProcess(TodoJpa todoJpa) {
-    log.info("modify===" + todoJpa);
     todoJpaService.insertTodo(todoJpa);
     return "redirect:/list";
   }
