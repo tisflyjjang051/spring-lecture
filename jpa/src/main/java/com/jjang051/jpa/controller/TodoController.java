@@ -26,6 +26,14 @@ public class TodoController {
 
   @PostMapping("/insert")
   public String insertProcess(TodoJpa todoJpa) {
+    log.info("modify===" + todoJpa);
+    todoJpaService.insertTodo(todoJpa);
+    return "redirect:/list";
+  }
+
+  @PostMapping("/modifyProcess")
+  public String modifyProcess(TodoJpa todoJpa) {
+    log.info("modify===" + todoJpa);
     todoJpaService.insertTodo(todoJpa);
     return "redirect:/list";
   }
@@ -35,6 +43,13 @@ public class TodoController {
     List<TodoJpa> todoList = todoJpaService.getAllTodo();
     model.addAttribute("todoList", todoList);
     return "/todo/list";
+  }
+
+  @GetMapping("/modify")
+  public String modify(int no, Model model) {
+    TodoJpa todoJpa = todoJpaService.getOneTodo(no);
+    model.addAttribute("todoJpa", todoJpa);
+    return "/todo/modify";
   }
 
   @GetMapping("/view")
