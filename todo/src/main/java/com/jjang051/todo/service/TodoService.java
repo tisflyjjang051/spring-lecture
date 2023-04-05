@@ -9,4 +9,6 @@ public interface TodoService {
   public List<TodoDto> getAllTodo(String pickedDate);
 
   public int deleteTodo(int no);
+
+  int updateTodo(TodoDto todoDto);
 }

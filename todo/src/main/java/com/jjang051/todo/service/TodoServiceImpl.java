@@ -29,4 +29,10 @@ public class TodoServiceImpl implements TodoService {
     int result = todoDao.deleteTodo(no);
     return result;
   }
+
+  @Override
+  public int updateTodo(TodoDto todoDto) {
+    int result = todoDao.updateTodo(todoDto);
+    return result;
+  }
 }

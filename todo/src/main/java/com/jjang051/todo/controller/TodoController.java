@@ -51,4 +51,16 @@ public class TodoController {
     //List<TodoDto> todoList = todoService.getAllTodo(todoDto.getPickedDate());
     return ResponseEntity.status(HttpStatus.OK).body(resultMap);
   }
+
+  @PostMapping("/update")
+  public ResponseEntity<Object> updateTodo(TodoDto todoDto) {
+    int result = todoService.updateTodo(todoDto);
+    Map<String, Integer> resultMap = new HashMap<>();
+    resultMap.put("result", result);
+    if (result > 0) {
+      return ResponseEntity.status(HttpStatus.OK).body(resultMap);
+    } else {
+      return ResponseEntity.status(500).body(resultMap);
+    }
+  }
 }

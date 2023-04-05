@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TODO</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"      rel="stylesheet">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/layout.css">
   <script src="/js/bootstrap.bundle.min.js"></script>
@@ -57,8 +58,8 @@
         tempHtml+=
         `<li class="${item.done==1?"done":""}"   data-no="${item.no}">
           <span class="txt">${item.todo}</span>
-          <button class="btnDone">DONE</button>
-          <button class="btnDelete">DEL</button>
+          <button class="btnDone"><span class="material-icons">done</span></button>
+          <button class="btnDelete"><span class="material-icons">delete</span></button>
         </li>`
       })
     $(".todoList").html(tempHtml);
@@ -100,6 +101,32 @@
         }
       })
     });
+    $(".todoList").on("click","li .btnDone",function(){
+      const clickedLi = $(this).parent();
+      const state = clickedLi.hasClass("done") ? 0 : 1;
+      const sendData  = {
+        no:parseInt($(this).parent().data("no")),
+        done:state
+      }
+      $.ajax({
+        url:"/update",
+        type:"POST",
+        data:sendData,
+        success:function(response){
+          if(response.result>0) {
+            if(clickedLi.hasClass("done")) {
+              clickedLi.removeClass("done");
+            } else {
+              clickedLi.addClass("done");
+            }
+          }
+        },
+        error:function(err) {
+          console.log(err)
+        }
+      })
+    })
+    
     $(".todoList").on("click","li .btnDelete",function(){
       const clickedLi = $(this).parent();
       const sendData  = {
