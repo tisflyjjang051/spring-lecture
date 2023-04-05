@@ -19,7 +19,7 @@ spring:
     database: oracle
     database-platform:  org.hibernate.dialect.Oracle10gDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: update   #create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     
