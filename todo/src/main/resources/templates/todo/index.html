@@ -7,18 +7,28 @@
   <title>TODO</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"      rel="stylesheet">
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/lightpick.css">
   <link rel="stylesheet" href="/css/layout.css">
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/js/gsap.min.js"></script>
+  <script src="/js/lightpick.js"></script>
   
 </head>
 <body>
   <header class="header">TODO</header>
   <div class="wrap">
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="날짜를 선택해 주세요." id="datepicker" />
+    </div>
+   
+    
     <div class="inputBox input-group">
-        <input type="text" class="form-control todo" placeholder="오늘의 할 일">
-        <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
+        <input type="text" class="form-control todo" placeholder="해야할 일을 입력하세요.">
+        <button class="btn btn-primary" type="button" id="button-addon2">
+          <span class="material-icons">add</span>
+        </button>
     </div>
     
     <div class="todoListBox">
@@ -49,6 +59,15 @@
   </div>
   
   <script>
+    const picker = new Lightpick({ 
+      field: document.querySelector("#datepicker"),
+      format:"YYYY/MM/DD",
+      onSelect:function(date){
+        loadData();
+      }
+    });
+    
+    picker.setDate(new Date());
     loadData();
     
     function makeList(array) {
@@ -66,8 +85,10 @@
     }
     
     function loadData(){
+      //picker.setDate(new Date());
+      //picker.setDate(date);
       const sendData  = {
-          pickedDate:"20230404"
+          pickedDate:$("#datepicker").val()
         }
       $.ajax({
         url:"/list",
@@ -84,10 +105,11 @@
     
     
     $(".inputBox .btn").on("click",function(){
+      
       const sendData  = {
         todo:$(".inputBox .todo").val(),
         done:0,
-        pickedDate:"20230404"
+        pickedDate:$("#datepicker").val()
       }
       $.ajax({
         url:"/insert",
@@ -100,6 +122,7 @@
           console.log(err);
         }
       })
+      $(".todo").val("");
     });
     $(".todoList").on("click","li .btnDone",function(){
       const clickedLi = $(this).parent();
@@ -142,7 +165,13 @@
           console.log(response);
           if(response.result>0) {
             gsap.to(clickedLi,{opacity:0,onComplete:function(){
-              clickedLi.remove();
+              const nextItems =  clickedLi.nextAll();
+              //console.log(nextItems);
+              gsap.to(nextItems,{y:-51,onComplete:function(){
+                console.log(nextItems);
+                $(".todoList li").removeAttr("style");
+                clickedLi.remove();
+              }});
             }})
           }
         },
